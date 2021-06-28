@@ -1,0 +1,61 @@
+{
+    "name": "express-postgrator-starter",
+    "version": "0.0.1",
+    "private": true,
+    "scripts": {
+        "start": "nodemon ./bin/www"
+    },
+    "dependencies": {
+        "bcryptjs": "2.4.3",
+        "compose-middleware": "5.0.1",
+        "cookie-parser": "~1.4.5",
+        "debug": "~4.3.1",
+        "express": "4.17.1",
+        "helmet": "^4.6.0",
+        "js-yaml": "4.1.0",
+        "jsonwebtoken": "8.5.1",
+        "lodash": "^4.17.21",
+        "moment": "2.29.1",
+        "morgan": "~1.10.0",
+        "multer": "1.4.2",
+        "mysql": "^2.18.1",
+        "mysql2": "^2.2.5",
+        "netmask": "^2.0.2",
+        "node-rsa": "^1.1.1",
+        "node-schedule": "2.0.0",
+        "nodemailer": "^6.6.1",
+        "openapi-types": "^9.0.3",
+        "postgrator": "4.1.1",
+        "request": "^2.88.2",
+        "sequelize": "6.6.2",
+        "socket.io": "4.1.2",
+        "swagger": "0.7.5",
+        "swagger-express-mw": "0.7.0",
+        "swagger-jsdoc": "6.1.0",
+        "webpack": "^5.38.1",
+        "winston": "3.3.3",
+        "worker-farm": "1.7.0"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.14.3",
+        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+        "@babel/plugin-transform-runtime": "^7.14.3",
+        "@babel/plugin-proposal-object-rest-spread": "7.14.4",
+        "@babel/preset-env": "^7.14.4",
+        "@babel/preset-stage-2": "^7.8.3",
+        "@babel/cli": "7.14.3",
+        "eslint": "7.27.0",
+        "eslint-plugin-import": "2.23.4",
+        "eslint-plugin-jsx-a11y": "6.4.1",
+        "eslint-plugin-react": "7.24.0",
+        "eslint-watch": "7.0.0",
+        "eslint-loader": "4.0.2",
+        "nodemon": "2.0.7"
+    },
+    "babel": {
+        "presets": [
+            "env",
+            "stage-2"
+        ]
+    }
+}

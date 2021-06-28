@@ -1,0 +1,135 @@
+swagger: '2.0'
+info:
+  title: Management API
+  description: Authenticate and manage
+  termsOfService: 'http://www.example.org/terms/'
+  version: 1.0.0
+schemes:
+  - http
+  - https
+basePath: /api/v1
+consumes:
+  - application/json
+  - application/x-www-form-urlencoded
+produces:
+  - application/json
+securityDefinitions:
+  auth_token:
+    description: Used for authorized requests
+    type: apiKey
+    name: auth_token
+    in: header
+paths:
+  /login:
+    x-swagger-router-controller: user
+    post:
+      tags:
+        - Auth
+      description: This endpoint is for log in a user in with his/her email and password.
+      operationId: loginUser
+      parameters:
+        - name: body
+          required: true
+          in: body
+          schema:
+            type: object
+            required:
+              - login
+              - password
+            properties:
+              login:
+                description: The user login
+                type: string
+              password:
+                description: The password for login in clear text
+                type: string
+              grant_type:
+                description: Type of authentication used to login
+                type: string
+              refresh_token:
+                description: Refresh token associated with user auth request
+                type: string
+              rsa_key_id:
+                description: RSA Key ID associated with user auth request
+                type: integer
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/LoginResponse'
+        '404':
+          $ref: '#/responses/404'
+        '500':
+          $ref: '#/responses/500'
+  /logout:
+    x-swagger-router-controller: user
+    get:
+      tags:
+        - Auth
+      description: Logout user
+      operationId: logoutUser
+      security:
+        - auth_token: []
+      responses:
+        '200':
+          description: successful operation
+        '403':
+          $ref: '#/responses/403'
+        '500':
+          $ref: '#/responses/500'
+definitions:
+  TokenError:
+    type: object
+    properties:
+      statusCode:
+        type: integer
+        format: int32
+      code:
+        type: string
+      message:
+        type: string
+  Error:
+    type: object
+    properties:
+      code:
+        type: integer
+        format: int32
+      message:
+        type: string
+  LoginResponse:
+    type: object
+    properties:
+      auth_token:
+        type: string
+      user:
+        $ref: '#/definitions/UserWithRoleDTO'
+responses:
+  '400':
+    description: Invalid request
+  '403':
+    description: token error
+    schema:
+      $ref: '#/definitions/TokenError'
+  '404':
+    description: Not found
+    schema:
+      $ref: '#/definitions/Error'
+  '409':
+    description: Conflict unique value model
+  '422':
+    description: Invalid payload
+  '429':
+    description: Too many requests
+parameters:
+  UserID:
+    name: id
+    in: path
+    description: ID of user
+    required: true
+    type: number
+    minimum: 1
+tags:
+  - name: Users
+    description: User management
+  - name: Auth
+    description: Operations about auth
